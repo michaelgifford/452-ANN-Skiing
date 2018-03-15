@@ -1,0 +1,86 @@
+"""
+Some code that I didn't really test yet, because I can't figure out how to use the input from gym. 
+But i looked up some tensorflow functions for convolutional neural nets (& fully connected layer).
+"""
+
+import tensorflow as tf
+import gym
+
+
+#game: (Ignore this for the tensorflow stuff, need a bridge from gym to the NN input)
+env = gym.make('Skiing-v0')
+observation = env.reset()
+
+
+#hyperparameters:
+n_observations = 80*80 #input size (# of pixels) -> this is super random, I don't know how to get here
+n_actions = 3
+
+#input: 
+input_layer = tf.placeholder(dtype=tf.float32)  #doesn't make sense at the moment
+
+
+#layer parameters:
+#convolutional layers
+convs = [16,32] #output 16 convolutions, next outputs 32 convolutions
+kernels = [8,8] # 8*8 kernel
+strides = [4,4] #stride 4
+padding_type = 'valid'
+activation_function = tf.nn.elu
+#use "VALID" padding -> aggressive image shrinking
+
+#fully connected layer
+fc_neurons = 256 
+
+
+#network:
+#1st convolutional layer:
+conv1 = tf.layers.conv2d(
+        inputs = input_tensor,
+        filters=convs[0],
+        kernel_size = kernels[0],
+        strides = strides[0],
+        padding = padding_type,
+        activation = activation_function,
+        name='conv1')
+
+#1st convolutional layer: (may change input if layer between convs)
+conv2 = tf.layers.conv2d(
+        inputs = conv1,
+        filters=convs[1],
+        kernel_size = kernels[1],
+        strides = strides[1],
+        padding = padding_type,
+        activation = activation_function,
+        name='conv2')
+
+flattening_layer = tf.layers.flatten(conv2)
+
+fc_layer = tf.layers.dense(
+        inputs=flattening_layer,
+        units=fc_neurons,
+        activation = activ,
+        name='fc')
+
+decision = tf.layers.dense(
+        inputs = fc_layer,
+        units = n_actions,
+        name='decision')
+        
+        
+#not sure what this is, it connects fc_layer to a single output node
+value = tf.layers.dense(
+        inputs = fc_layer,
+        units = 1,
+        name='value')
+        
+        
+"""
+What else we need:
+- Actual learning mechanism -> cost function & Q learning (+ memory?)
+- ReLU layers?
+- Input (ha)
+
+"""
+
+
