@@ -78,7 +78,6 @@ value = tf.layers.dense(
 """
 What else we need:
 - Actual learning mechanism -> cost function & Q learning (+ memory?)
-- ReLU layers?
 - Input (ha)
 
 """
