@@ -26,7 +26,7 @@ convs = [16,32] #output 16 convolutions, next outputs 32 convolutions
 kernels = [8,8] # 8*8 kernel
 strides = [4,4] #stride 4
 padding_type = 'valid'
-activation_function = tf.nn.elu
+activation_function = tf.nn.relu #This is where ReLU comes in!
 #use "VALID" padding -> aggressive image shrinking
 
 #fully connected layer
