@@ -13,5 +13,6 @@ while True:
 		action_n = 3
 	elif index == 2: #LEFT
 		action_n = 4
+	#base on action meaning of atari_env.py
 	
 	observation_n, reward_n, done_n, info = env.step(action_n)
