@@ -1,0 +1,22 @@
+Note: where 'python3' is used may need to be 'python' for your system
+
+INSTALL:
+
+$ brew install cmake boost boost-python sdl2 swig wget
+$ cd $your_work_directory
+$ cd atari_nndl
+$ pip install --user --upgrade pip
+$ pip install --user --upgrade -r requirements.txt
+$ python3 dqn_skiing.py -v --render
+
+
+USAGE:
+
+Train model:
+$ python3 dqn_skiing.py -v --number-steps 1000000
+
+After model saved, view by running:
+$ python3 dqn_skiing.py --test --render
+
+For help:
+$ python3 dqn_skiing.py --help

@@ -1,0 +1,7 @@
+numpy
+tensorflow
+
+gym
+atari-py
+Pillow
+PyOpenGL
