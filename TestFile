@@ -1,0 +1,17 @@
+import tensorflow as tf
+import gym
+
+env = gym.make('Skiing-v0')
+observation_n = env.reset()
+Q_score = [0] * 3
+while True:
+	env.render()
+	index = Q_score.index(max(Q_score))
+	if index == 0: #NOOP
+		action_n = 0
+	elif index == 1: #RIGHT
+		action_n = 3
+	elif index == 2: #LEFT
+		action_n = 4
+	
+	observation_n, reward_n, done_n, info = env.step(action_n)
